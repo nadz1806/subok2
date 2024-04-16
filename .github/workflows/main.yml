@@ -1,0 +1,48 @@
+import pyautogui
+import time
+
+# Delay before starting (in seconds)
+time.sleep(5)
+
+# RustDesk workflow actions
+try:
+    # Open RustDesk
+    pyautogui.write('rustdesk')
+    pyautogui.press('enter')
+    time.sleep(10)  # Wait for RustDesk to initialize
+
+    # Click on the "Connect to Remote Computer" button
+    pyautogui.moveTo(500, 500)  # Adjust these coordinates based on your screen resolution
+    pyautogui.click()
+    time.sleep(5)
+
+    # Enter the remote computer's ID
+    pyautogui.write('REMOTE_COMPUTER_ID')  # Replace with the ID of the remote computer
+    time.sleep(2)
+
+    # Click on the "Connect" button
+    pyautogui.moveTo(600, 600)  # Adjust these coordinates based on your screen resolution
+    pyautogui.click()
+    time.sleep(10)  # Wait for the connection to establish
+
+    # Enter the password if required
+    # pyautogui.write('PASSWORD')  # Uncomment and replace with the password if needed
+    # pyautogui.press('enter')
+    # time.sleep(5)
+
+    # Keep the session alive
+    pyautogui.moveTo(50, 50)
+    time.sleep(2)
+    pyautogui.moveTo(100, 100)
+    time.sleep(2)
+
+    # Disconnect or close RustDesk
+    # For demonstration, I'm using a hotkey to close the active window
+    pyautogui.hotkey('alt', 'f4')
+    time.sleep(2)
+
+    # Shutdown or disconnect RDP
+    pyautogui.hotkey('ctrl', 'alt', 'end')
+
+except Exception as e:
+    print(f"An error occurred: {e}")
